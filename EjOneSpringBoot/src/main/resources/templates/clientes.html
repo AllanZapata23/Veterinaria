@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <style>
+        /* Add custom style for the page title */
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Add custom style for the table */
+table {
+  margin: auto;
+  width: 80%;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+th,
+td {
+  text-align: center;
+  padding: 8px;
+  border: 1px solid black;
+}
+
+/* Add custom style for the form */
+form {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+label {
+  display: inline-block;
+  width: 100px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+    </style>
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<h1>Lista de clientes</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Nombre mascota</th>
+        <th>Celular</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cliente : ${clientes}">
+        <td th:text="${cliente.id}"></td>
+        <td th:text="${cliente.Nombre}"></td>
+        <td th:text="${cliente.Apellido}"></td>
+        <td th:text="${cliente.nombremascota}"></td>
+        <td th:text="${cliente.Celular}"></td>
+    </tr>
+    </tbody>
+</table>
+<h1>Agregar cliente</h1>
+<form action="/clientes" method="POST" th:object="${cliente}">
+    <label for="id">id:</label>
+    <input type="text" id="id" name="id" th:field="*{id}" required><br>
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="Nombre" th:field="*{Nombre}" required><br>
+    <label for="apellido">Apellido:</label>
+    <input type="text" id="apellido" name="Apellido" th:field="*{Apellido}" required><br>
+    <label for="nombremascota">Nombre mascota:</label>
+    <input type="text" id="nombremascota" name="nombremascota" th:field="*{nombremascota}" required><br>
+    <label for="celular">Celular:</label>
+    <input type="text" id="celular" name="Celular" th:field="*{Celular}" required><br>
+    <button type="submit">Agregar</button>
+</form>
+</body>
+</html>
+
